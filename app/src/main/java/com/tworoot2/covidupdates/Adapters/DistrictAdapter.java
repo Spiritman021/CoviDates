@@ -1,4 +1,4 @@
-package com.tworoot2.covidupdates;
+package com.tworoot2.covidupdates.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,10 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.tworoot2.covidupdates.Models.DistrictModel;
+import com.tworoot2.covidupdates.ViewHolders.DistrictViewHolder;
+import com.tworoot2.covidupdates.R;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

@@ -1,16 +1,12 @@
 package com.tworoot2.covidupdates;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NavUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,14 +20,15 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.tworoot2.covidupdates.Adapters.DistrictAdapter;
+import com.tworoot2.covidupdates.Models.DistrictModel;
+import com.tworoot2.covidupdates.Models.Model;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -39,8 +36,8 @@ import java.util.List;
 
 public class DistrictActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    TextView confirmedC, activeC, deathC, recoveredC, dateD, timeT,stateName;
-    public String state ;
+    TextView confirmedC, activeC, deathC, recoveredC, dateD, timeT, stateName;
+    public String state;
     ArrayList<DistrictModel> districtModelArrayList;
     RecyclerView recV;
     DistrictAdapter districtAdapter;
@@ -53,92 +50,86 @@ public class DistrictActivity extends AppCompatActivity implements AdapterView.O
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        fetchData();
 
         spinner = (Spinner) findViewById(R.id.spinner);
 
         spinner.setOnItemSelectedListener(this);
         spinnerAction();
 
+
         dateD = (TextView) findViewById(R.id.dateD);
         dateD.setText(getIntent().getStringExtra("date"));
         state = getIntent().getStringExtra("name");
         setTitle(state);
+
+        districtModelArrayList = new ArrayList<>();
+
         recV = (RecyclerView) findViewById(R.id.recV);
         recV.setHasFixedSize(true);
         recV.setLayoutManager(new LinearLayoutManager(this));
 
-        districtModelArrayList = new ArrayList<>();
         districtAdapter = new DistrictAdapter(DistrictActivity.this, districtModelArrayList);
+
+        fetchData();
+
         recV.setAdapter(districtAdapter);
 
 
     }
 
-    private void fetchData(){
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "https://api.covid19india.org/v2/state_district_wise.json";
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
-                Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-
-                JSONObject latestDistrictData = null;
-               // JSONObject olderData = null;
-                JSONObject jsonObjectState = null ;
-                JSONArray jsonArrayDistrict;
-
-                try {
-
-                    int corona = 0;
-                    districtModelArrayList.clear();
-
-                    for (int i = 1; i < response.length(); i++){
-                        jsonObjectState = response.getJSONObject(i);
-
-                        if (state.toLowerCase().equals(jsonObjectState.getString("state").toLowerCase())){
-
-                            jsonArrayDistrict = jsonObjectState.getJSONArray("districtData");
-
-                            for (int j = 0; j < jsonArrayDistrict.length();j++){
-
-                                latestDistrictData = jsonArrayDistrict.getJSONObject(j);
+    private void fetchData() {
 
 
-                                String districtName = latestDistrictData.getString("district");
-                                String confirmedS = latestDistrictData.getString("confirmed");
-                                String recoveredS = latestDistrictData.getString("recovered");
-                                String deathS = latestDistrictData.getString("deceased");
-                                String activeS = latestDistrictData.getString("active");
-                               // String date = latestDistrictData.getString("migratedother");
-                                String date =  getIntent().getStringExtra("date").substring(0,10);
-                                DistrictModel stateC = new DistrictModel(districtName, confirmedS, recoveredS, activeS, deathS, date);
+        try {
+            String dist = getIntent().getStringExtra("district");
 
-                                districtModelArrayList.add(stateC);
+            JSONObject jsonObject = null;
+            jsonObject = new JSONObject(dist);
 
 
-                            }
-                            corona = 1;
-                        }
-                        if (corona == 1){
-                            break;
-                        }
-                    }
+            for (int i = 0; i < jsonObject.length(); i++) {
 
-                    districtAdapter.notifyDataSetChanged();
-                }
-                catch (Exception e){
-                    e.printStackTrace();
-                }
+                String districtCode = String.valueOf(jsonObject.names().get(i));
+
+                String districtName = districtCode;
+
+                JSONObject districtObject1 = jsonObject.getJSONObject(districtCode).getJSONObject("total");
+
+//                String dT = (dateTime.getString("last_updated"));
+//                String dateT = dT.substring(8, 10) + "/" + dT.substring(5, 7) + "/" + dT.substring(0, 4);
+//                String timeT = dT.substring(11, 19);
+
+                String vaccinated1 = districtObject1.getString("vaccinated1");
+                String vaccinated2 = districtObject1.getString("vaccinated2");
+                String totalDoses = String.valueOf((Integer.valueOf(vaccinated1)) + (Integer.valueOf(vaccinated2)));
+
+                String confirmedS = districtObject1.getString("confirmed");
+                String recoveredS = districtObject1.getString("recovered");
+                String deathS = districtObject1.getString("deceased");
+                String activeS = String.valueOf((Integer.valueOf(confirmedS)) -
+                        (Integer.valueOf(recoveredS) + Integer.valueOf(deathS)));
+
+//                String date = dateT + " at " + timeT;
+                String date = " at ";
+
+
+                DistrictModel stateC = new DistrictModel(districtName, confirmedS, recoveredS, activeS, deathS, date);
+
+                districtModelArrayList.add(stateC);
+
+                districtAdapter = new DistrictAdapter(DistrictActivity.this, districtModelArrayList);
+
+                districtAdapter.notifyDataSetChanged();
+
 
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-        requestQueue.add(jsonArrayRequest);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Error" + e, Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private void spinnerAction() {
@@ -164,7 +155,7 @@ public class DistrictActivity extends AppCompatActivity implements AdapterView.O
     }
 
 
-    public void sortData1(){
+    public void sortData1() {
         Collections.sort(districtModelArrayList, new Comparator<DistrictModel>() {
             @Override
             public int compare(DistrictModel o1, DistrictModel o2) {
@@ -173,9 +164,8 @@ public class DistrictActivity extends AppCompatActivity implements AdapterView.O
                 try {
                     c1 = Integer.parseInt(o1.getConfirmedC());
                     c2 = Integer.parseInt(o2.getConfirmedC());
-                    return Integer.compare(c2,c1);
-                }
-                catch (Exception e)    {
+                    return Integer.compare(c2, c1);
+                } catch (Exception e) {
                     return o1.getConfirmedC().compareTo(o2.getConfirmedC());
                 }
             }
@@ -183,7 +173,7 @@ public class DistrictActivity extends AppCompatActivity implements AdapterView.O
         districtAdapter.notifyDataSetChanged();
     }
 
-    public void sortData2(){
+    public void sortData2() {
         Collections.sort(districtModelArrayList, new Comparator<DistrictModel>() {
             @Override
             public int compare(DistrictModel o1, DistrictModel o2) {
@@ -192,9 +182,8 @@ public class DistrictActivity extends AppCompatActivity implements AdapterView.O
                 try {
                     c1 = Integer.parseInt(o1.getActiveC());
                     c2 = Integer.parseInt(o2.getActiveC());
-                    return Integer.compare(c2,c1);
-                }
-                catch (Exception e)    {
+                    return Integer.compare(c2, c1);
+                } catch (Exception e) {
                     return o1.getConfirmedC().compareTo(o2.getConfirmedC());
                 }
             }
@@ -202,7 +191,7 @@ public class DistrictActivity extends AppCompatActivity implements AdapterView.O
         districtAdapter.notifyDataSetChanged();
     }
 
-    public void sortData3(){
+    public void sortData3() {
         Collections.sort(districtModelArrayList, new Comparator<DistrictModel>() {
             @Override
             public int compare(DistrictModel o1, DistrictModel o2) {
@@ -211,9 +200,8 @@ public class DistrictActivity extends AppCompatActivity implements AdapterView.O
                 try {
                     c1 = Integer.parseInt(o1.getRecoveredC());
                     c2 = Integer.parseInt(o2.getRecoveredC());
-                    return Integer.compare(c2,c1);
-                }
-                catch (Exception e)    {
+                    return Integer.compare(c2, c1);
+                } catch (Exception e) {
                     return o1.getConfirmedC().compareTo(o2.getConfirmedC());
                 }
             }
@@ -221,7 +209,7 @@ public class DistrictActivity extends AppCompatActivity implements AdapterView.O
         districtAdapter.notifyDataSetChanged();
     }
 
-    public void sortData4(){
+    public void sortData4() {
         Collections.sort(districtModelArrayList, new Comparator<DistrictModel>() {
             @Override
             public int compare(DistrictModel o1, DistrictModel o2) {
@@ -230,9 +218,8 @@ public class DistrictActivity extends AppCompatActivity implements AdapterView.O
                 try {
                     c1 = Integer.parseInt(o1.getDeathC());
                     c2 = Integer.parseInt(o2.getDeathC());
-                    return Integer.compare(c2,c1);
-                }
-                catch (Exception e)    {
+                    return Integer.compare(c2, c1);
+                } catch (Exception e) {
                     return o1.getConfirmedC().compareTo(o2.getConfirmedC());
                 }
             }
@@ -261,19 +248,19 @@ public class DistrictActivity extends AppCompatActivity implements AdapterView.O
         String item = adapterView.getItemAtPosition(i).toString();
         Toast.makeText(adapterView.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
 
-        if (adapterView.getPositionForView(view) == 0){
+        if (adapterView.getPositionForView(view) == 0) {
             fetchData();
         }
-        if (adapterView.getPositionForView(view) == 1){
+        if (adapterView.getPositionForView(view) == 1) {
             sortData2();
         }
-        if (adapterView.getPositionForView(view) == 2){
+        if (adapterView.getPositionForView(view) == 2) {
             sortData1();
         }
-        if (adapterView.getPositionForView(view) == 3){
+        if (adapterView.getPositionForView(view) == 3) {
             sortData3();
         }
-        if (adapterView.getPositionForView(view) == 4){
+        if (adapterView.getPositionForView(view) == 4) {
             sortData4();
         }
 

@@ -3,4 +3,55 @@
 
     <string name="action_settings">Settings</string>
     <string name="spinner_title">Sort</string>
+
+    <string name="glideH"> <u>Glide Library</u></string>
+    <string name="glide">Glide is an Image Loader Library for Android developed by bumptech and is a library that is recommended by Google. It has been used in many Google open source projects including Google I/O 2014 official application. It provides animated GIF support and handles image loading/caching.</string>
+
+    <string name="volleyH"> <u>Volley Library</u></string>
+    <string name="volley">Volley is an HTTP library that makes networking for Android apps easier and most importantly, faster. Volley is available on GitHub.</string>
+
+    <string name="circularImage"> <u>CircleImageView</u></string>
+    <string name="circularImageH">A fast circular ImageView perfect for profile images.
+        This is based on RoundedImageView from Vince Mi which itself is based on techniques recommended by Romain Guy.
+</string>
+
+    <string name="AN">Andaman Nicobar</string>
+    <string name="AP">Andhra Pradesh</string>
+    <string name="AR">Arunachal Pradesh</string>
+    <string name="AS">Assam</string>
+    <string name="BR">Bihar</string>
+    <string name="CH">Chandigarh</string>
+    <string name="CT">Chhattisgarh</string>
+    <string name="DL">Delhi</string>
+    <string name="DN">Dadra and Nagar Haveli and Daman and Diu</string>
+    <string name="GA">Goa</string>
+    <string name="GJ">Gujarat</string>
+    <string name="HP">Himachal Pradesh</string>
+    <string name="HR">Haryana</string>
+    <string name="JH">Jharkhand</string>
+    <string name="JK">Jammu and Kashmir</string>
+    <string name="KA">Karnataka</string>
+    <string name="KL">Kerala</string>
+    <string name="LA">Ladakh</string>
+    <string name="LD">Lakshadweep</string>
+    <string name="MH">Maharashtra</string>
+    <string name="ML">Meghalaya</string>
+    <string name="MN">Manipur</string>
+    <string name="MP">Madhya Pradesh</string>
+    <string name="MZ">Mizoram</string>
+    <string name="NL">Nagaland</string>
+    <string name="OR">Odisha</string>
+    <string name="PB">Punjab</string>
+    <string name="PY">Puducherry</string>
+    <string name="RJ">Rajasthan</string>
+    <string name="SK">Sikkim</string>
+    <string name="TG">Telangana</string>
+    <string name="TN">Tamil Nadu</string>
+    <string name="TR">Tripura</string>
+    <string name="TT">Across India</string>
+    <string name="UP">Uttarpradesh</string>
+    <string name="UT">Uttarakhand</string>
+    <string name="WB">West Bengal</string>
+    <string name="covid_gyan_title">Advice for the public : Corona Virus diseases (COVID-19)</string>
+    <string name="dataProvided">These data are provided by :\n <u>https://data.covid19india.org/</u> </string>
 </resources>

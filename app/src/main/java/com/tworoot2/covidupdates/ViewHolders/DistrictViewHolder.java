@@ -1,4 +1,4 @@
-package com.tworoot2.covidupdates;
+package com.tworoot2.covidupdates.ViewHolders;
 
 import android.view.View;
 import android.widget.TextView;
@@ -6,14 +6,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.tworoot2.covidupdates.R;
+
 public class DistrictViewHolder extends RecyclerView.ViewHolder {
 
-    TextView districtName;
-    TextView confirmedC;
-    TextView recoveredC;
-    TextView activeC;
-    TextView deathC;
-    TextView dateD;
+    public TextView districtName;
+    public TextView confirmedC;
+    public TextView recoveredC;
+    public TextView activeC;
+    public TextView deathC;
+    public TextView dateD;
 
     public DistrictViewHolder(@NonNull View itemView) {
         super(itemView);

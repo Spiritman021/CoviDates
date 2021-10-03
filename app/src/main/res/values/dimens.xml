@@ -2,4 +2,8 @@
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="casesFontSize">16dp</dimen>
+    <dimen name="dateTime">14dp</dimen>
+    <dimen name="stateName">17dp</dimen>
+    <dimen name="vaccination">15dp</dimen>
 </resources>

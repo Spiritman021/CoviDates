@@ -1,4 +1,4 @@
-package com.tworoot2.covidupdates;
+package com.tworoot2.covidupdates.Models;
 
 public class DistrictModel {
     private String districtName;

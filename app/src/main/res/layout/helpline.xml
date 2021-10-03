@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/custom_background"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PUBLIC HELPLINE NUMBERS"
+                android:textSize="25dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/myRed"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black"/>
+
+            <TextView
+                android:id="@+id/hmh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Health Ministry Helpline : 1075"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:textSize="18dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black"/>
+
+            <TextView
+                android:id="@+id/ch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Child Helpline : 1098"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:textSize="18dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black"/>
+
+            <TextView
+                android:id="@+id/mhh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mental Health Helpline : 08046110007"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:textSize="18dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black"/>
+
+            <TextView
+                android:id="@+id/sch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Senior Citizen Helpline : 14567"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:textSize="18dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black"/>
+
+            <TextView
+                android:id="@+id/acch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ayush Covid-19 Counselling Helpline : 14443"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:textSize="18dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black"/>
+
+            <TextView
+                android:id="@+id/mwh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="MyGov WhatsApp Helpdesk : 9013151515"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:textSize="18dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Source : Aarogya Setu"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="#AC0D83"
+                android:gravity="center"
+                android:layout_marginBottom="20dp"
+                android:textSize="14dp"/>
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

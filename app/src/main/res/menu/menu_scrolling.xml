@@ -3,8 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.tworoot2.covidupdates.ScrollingActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/precautions"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="Precautions"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/about"
+        android:orderInCategory="100"
+        android:title="About Developer"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/helpline"
+        android:orderInCategory="100"
+        android:title="Public Helpline"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/app"
+        android:orderInCategory="100"
+        android:title="About this app"
         app:showAsAction="never" />
 </menu>

@@ -11,9 +11,11 @@
     <color name="myDarkGreen">#005A04</color>
     <color name="myRed">#F83232</color>
     <color name="myYellow">#CA9700</color>
+    <color name="myYellow2">#FFB23F</color>
     <color name="myColor">#7CBAEC</color>
     <color name="death">#C306E3</color>
     <color name="cardBackground">#FF5C29</color>
+    <color name="tB">#FF9800</color>
 
     <color name="p_bg">#dddddd</color>
 </resources>
