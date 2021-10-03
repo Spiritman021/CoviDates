@@ -148,7 +148,7 @@
                 android:layout_marginRight="20dp"
                 android:textSize="18dp"
                 android:layout_width="match_parent"
-                android:textColor="@color/black"
+                android:textColor="@color/myDarkGreen"
                 android:layout_height="wrap_content"
                 android:text="@string/dataProvided"/>
 
