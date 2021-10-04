@@ -3,14 +3,13 @@
 
 This application shows the latest updates of Covid 19 and Vaccination update in India.
 
-
+# Download the CoviDates App 
+## [Download Now](https://github.com/Spiritman021/CoviDates/raw/master/app/APK%20File/CoviDates.apk)
 
 ![Logo](https://spiritman021.github.io/CoviDates/app/APP%20Screenshots/virus.png)
 
-#Download the CoviDates App
 
-[![Download](https://www.pngmart.com/files/10/Download-Now-Button-PNG-Free-Download.png)](https://github.com/Spiritman021/CoviDates/raw/master/app/APK%20File/CoviDates.apk)
-    
+  
 
 ## Screenshots
 
